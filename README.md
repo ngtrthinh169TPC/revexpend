@@ -1,2 +1,0 @@
-# revexpend
-React Native learning

@@ -7,18 +7,8 @@ import {
 	DROP_TOKEN,
 	ADD_EXPENDITURE,
 	REMOVE_EXPENDITURE,
+	RESET_EXPENDITURES,
 } from "./actions";
-
-const expenditureReducer = (state = [], action) => {
-	switch (action.type) {
-		case ADD_EXPENDITURE:
-			return [...state, action.payload];
-		case REMOVE_EXPENDITURE:
-			return state.filter((item) => item.id !== action.payload);
-		default:
-			return state;
-	}
-};
 
 const tokenReducer = (state = {}, action) => {
 	switch (action.type) {
@@ -32,9 +22,30 @@ const tokenReducer = (state = {}, action) => {
 	}
 };
 
+const expenditureReducer = (state = [], action) => {
+	switch (action.type) {
+		case ADD_EXPENDITURE:
+			return [...state, action.payload];
+		case REMOVE_EXPENDITURE:
+			return state.filter((item) => item.id !== action.payload);
+		case RESET_EXPENDITURES:
+			return [];
+		default:
+			return state;
+	}
+};
+
+const idGenerateReducer = (state = 0, action) => {
+	switch (action.type) {
+		default:
+			return state;
+	}
+};
+
 const reducer = combineReducers({
 	token: tokenReducer,
 	expenditures: expenditureReducer,
+	idgen: idGenerateReducer,
 });
 
 export default reducer;

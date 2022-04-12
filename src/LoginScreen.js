@@ -1,8 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 import { connect } from "react-redux";
 
 import { login } from "../redux/actions";
@@ -14,26 +13,18 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
+	pressable: {
+		padding: 6,
+		margin: 4,
+		borderWidth: 1,
+		borderColor: "#eff",
+		borderRadius: 5,
+		backgroundColor: "#46f",
+	},
+	pressableText: {
+		color: "#eff",
+	},
 });
-
-// const LoginScreen = ({ navigation }) => {
-// 	const dispatch = useDispatch();
-
-// 	return (
-// 		<View style={styles.container}>
-// 			<Text>Login Screen</Text>
-// 			{/* <Text>Current token: {token}</Text> */}
-// 			<Button
-// 				title='Login'
-// 				onPress={() => dispatch(login("username", "password"))}
-// 			/>
-// 			<Button
-// 				title='to Token'
-// 				onPress={() => navigation.navigate("ShowToken")}
-// 			/>
-// 		</View>
-// 	);
-// };
 
 class LoginScreen extends React.Component {
 	_login = (username, password) => {
@@ -43,15 +34,20 @@ class LoginScreen extends React.Component {
 		return (
 			<View style={styles.container}>
 				<Text>Login Screen</Text>
-				<Text>Current token: {this.props.token.token}</Text>
-				<Button
-					title='Login'
-					onPress={() => this._login("username", "password")}
-				/>
-				<Button
-					title='to Token'
-					onPress={() => this.props.navigation.navigate("ShowToken")}
-				/>
+				{this.props.token.token ? (
+					<Text>Current token: {this.props.token.token}</Text>
+				) : (
+					<Pressable
+						style={styles.pressable}
+						onPress={() => this._login("username", "password")}>
+						<Text>Login</Text>
+					</Pressable>
+				)}
+				<Pressable
+					style={styles.pressable}
+					onPress={() => this.props.navigation.navigate("ShowToken")}>
+					<Text>to Token Page</Text>
+				</Pressable>
 			</View>
 		);
 	}
@@ -61,5 +57,4 @@ const mapStateToProps = (state) => ({
 	token: state.token,
 });
 
-// export default LoginScreen;
 export default connect(mapStateToProps, { login })(LoginScreen);

@@ -6,6 +6,7 @@ export const LOG_IN = "LOG_IN";
 export const DROP_TOKEN = "DROP_TOKEN";
 export const ADD_EXPENDITURE = "ADD_EXPENDITURE";
 export const REMOVE_EXPENDITURE = "REMOVE_EXPENDITURE";
+export const RESET_EXPENDITURES = "RESET_EXPENDITURES";
 
 export const login = (username, password) => async (dispatch) => {
 	try {
@@ -36,5 +37,11 @@ export const removeExpenditure = (expenditureId) => (dispatch) => {
 	dispatch({
 		type: REMOVE_EXPENDITURE,
 		payload: expenditureId,
+	});
+};
+
+export const resetExpenditures = () => (dispatch) => {
+	dispatch({
+		type: RESET_EXPENDITURES,
 	});
 };

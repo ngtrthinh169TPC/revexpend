@@ -40,13 +40,13 @@ class LoginScreen extends React.Component {
 					<Pressable
 						style={styles.pressable}
 						onPress={() => this._login("username", "password")}>
-						<Text>Login</Text>
+						<Text style={styles.pressableText}>Login</Text>
 					</Pressable>
 				)}
 				<Pressable
 					style={styles.pressable}
 					onPress={() => this.props.navigation.navigate("ShowToken")}>
-					<Text>to Token Page</Text>
+					<Text style={styles.pressableText}>to Token Page</Text>
 				</Pressable>
 			</View>
 		);

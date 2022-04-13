@@ -43,6 +43,7 @@ export default function App() {
 								tabBarIcon: ({ color, size }) => (
 									<Icon name='home' color={color} size={size} />
 								),
+								headerStyle: { backgroundColor: "#cdd" },
 							}}
 						/>
 						<Tab.Screen
@@ -53,6 +54,7 @@ export default function App() {
 								tabBarIcon: ({ color, size }) => (
 									<Icon name='money' color={color} size={size} />
 								),
+								headerStyle: { backgroundColor: "#7fb" },
 							}}
 						/>
 						<Tab.Screen
@@ -63,6 +65,7 @@ export default function App() {
 								tabBarIcon: ({ color, size }) => (
 									<Icon name='shopping-cart' color={color} size={size} />
 								),
+								headerStyle: { backgroundColor: "#7df" },
 							}}
 						/>
 					</Tab.Navigator>

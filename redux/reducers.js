@@ -8,6 +8,9 @@ import {
 	ADD_EXPENDITURE,
 	REMOVE_EXPENDITURE,
 	RESET_EXPENDITURES,
+	ADD_REVENUE,
+	REMOVE_REVENUE,
+	RESET_REVENUES,
 } from "./actions";
 
 const tokenReducer = (state = {}, action) => {
@@ -22,21 +25,71 @@ const tokenReducer = (state = {}, action) => {
 	}
 };
 
-const expenditureReducer = (state = [], action) => {
+const expenditureReducer = (
+	state = { expenditureList: [], totalSpent: 0, idSeed: 0 },
+	action
+) => {
 	switch (action.type) {
-		case ADD_EXPENDITURE:
-			return [...state, action.payload];
-		case REMOVE_EXPENDITURE:
-			return state.filter((item) => item.id !== action.payload);
+		case ADD_EXPENDITURE: {
+			let newTotalSpent = state.totalSpent + action.payload.spent;
+			action.payload.id = state.idSeed;
+			let newExpenditureList = [...state.expenditureList, action.payload];
+			return {
+				expenditureList: newExpenditureList,
+				totalSpent: newTotalSpent,
+				idSeed: state.idSeed + 1,
+			};
+		}
+		case REMOVE_EXPENDITURE: {
+			let newTotalSpent =
+				state.totalSpent -
+				state.expenditureList.find((item) => item.id === action.payload).spent;
+			let newExpenditureList = state.expenditureList.filter(
+				(item) => item.id !== action.payload
+			);
+			return {
+				expenditureList: newExpenditureList,
+				totalSpent: newTotalSpent,
+				idSeed: state.idSeed,
+			};
+		}
 		case RESET_EXPENDITURES:
-			return [];
+			return { expenditureList: [], totalSpent: 0, idSeed: 0 };
 		default:
 			return state;
 	}
 };
 
-const idGenerateReducer = (state = 0, action) => {
+const revenueReducer = (
+	state = { revenueList: [], totalGain: 0, idSeed: 0 },
+	action
+) => {
 	switch (action.type) {
+		case ADD_REVENUE: {
+			let newTotalGain = state.totalGain + action.payload.gain;
+			action.payload.id = state.idSeed;
+			let newRevenueList = [...state.revenueList, action.payload];
+			return {
+				revenueList: newRevenueList,
+				totalGain: newTotalGain,
+				idSeed: state.idSeed + 1,
+			};
+		}
+		case REMOVE_REVENUE: {
+			let newTotalGain =
+				state.totalGain -
+				state.revenueList.find((item) => item.id === action.payload).gain;
+			let newRevenueList = state.revenueList.filter(
+				(item) => item.id !== action.payload
+			);
+			return {
+				revenueList: newRevenueList,
+				totalGain: newTotalGain,
+				idSeed: state.idSeed,
+			};
+		}
+		case RESET_REVENUES:
+			return { revenueList: [], totalGain: 0, idSeed: 0 };
 		default:
 			return state;
 	}
@@ -45,7 +98,7 @@ const idGenerateReducer = (state = 0, action) => {
 const reducer = combineReducers({
 	token: tokenReducer,
 	expenditures: expenditureReducer,
-	idgen: idGenerateReducer,
+	revenues: revenueReducer,
 });
 
 export default reducer;

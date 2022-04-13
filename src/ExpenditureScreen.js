@@ -1,7 +1,14 @@
 /** @format */
 
 import React from "react";
-import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
+import {
+	Text,
+	View,
+	StyleSheet,
+	ScrollView,
+	Pressable,
+	TextInput,
+} from "react-native";
 import { connect } from "react-redux";
 
 import {
@@ -16,6 +23,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	buttonContainer: {
+		flexDirection: "row",
 	},
 	item: {
 		backgroundColor: "#fdfdff",
@@ -51,10 +61,26 @@ const styles = StyleSheet.create({
 	pressableText: {
 		color: "#eff",
 	},
+	modalInput: {
+		width: 240,
+		height: 24,
+		margin: 5,
+		borderWidth: 1,
+		padding: 5,
+	},
 });
 
 class ExpenditureScreen extends React.Component {
+	state = {
+		showModal: false,
+		newExpenditure: {
+			title: "",
+			spent: "0",
+		},
+	};
+
 	_addExpenditure = (expenditure) => {
+		expenditure.spent = +expenditure.spent;
 		this.props.addExpenditure(expenditure);
 	};
 
@@ -66,27 +92,74 @@ class ExpenditureScreen extends React.Component {
 		this.props.resetExpenditures();
 	};
 
+	_onChangeTitle = (text) => {
+		this.setState({
+			...this.state,
+			newExpenditure: { ...this.state.newExpenditure, title: text },
+		});
+	};
+
+	_onChangeSpent = (text) => {
+		this.setState({
+			...this.state,
+			newExpenditure: { ...this.state.newExpenditure, spent: text },
+		});
+	};
+
 	render() {
 		return (
 			<View style={styles.container}>
-				<Pressable
-					style={styles.pressable}
-					onPress={() =>
-						this._addExpenditure({
-							id: this.props.expenditures.length + 1,
-							title: "new exp",
-							spent: 200,
-						})
-					}>
-					<Text style={styles.pressableText}>Add Expenditure</Text>
-				</Pressable>
-				<Pressable
-					style={styles.pressable}
-					onPress={() => this._resetExpenditures()}>
-					<Text style={styles.pressableText}>Reset Expenditures</Text>
-				</Pressable>
+				<Text>Total spent: {this.props.expenditures.totalSpent}</Text>
+				<View style={styles.buttonContainer}>
+					<Pressable
+						style={styles.pressable}
+						onPress={() => {
+							this.setState({ showModal: true });
+						}}>
+						<Text style={styles.pressableText}>Add Expenditure</Text>
+					</Pressable>
+					<Pressable
+						style={styles.pressable}
+						onPress={() => {
+							this.setState({ showModal: false });
+							this._resetExpenditures();
+						}}>
+						<Text style={styles.pressableText}>Reset Expenditures</Text>
+					</Pressable>
+				</View>
+				{this.state.showModal ? (
+					<>
+						<Text>Title:</Text>
+						<TextInput
+							style={styles.modalInput}
+							value={this.state.newExpenditure.title}
+							onChangeText={(text) => {
+								this._onChangeTitle(text);
+							}}
+						/>
+						<Text>Money spent:</Text>
+						<TextInput
+							style={styles.modalInput}
+							value={this.state.newExpenditure.spent}
+							keyboardType='numeric'
+							onChangeText={(text) => {
+								this._onChangeSpent(text);
+							}}
+						/>
+						<Pressable
+							style={styles.pressable}
+							onPress={() => {
+								this._addExpenditure(this.state.newExpenditure);
+								this.setState({ showModal: false });
+							}}>
+							<Text style={styles.pressableText}>Add</Text>
+						</Pressable>
+					</>
+				) : (
+					<></>
+				)}
 				<ScrollView>
-					{this.props.expenditures.map((item) => (
+					{this.props.expenditures.expenditureList.map((item) => (
 						<View style={styles.item} key={item.id}>
 							<Text style={styles.itemText}>{item.id}</Text>
 							<Text style={styles.itemText}>Title: {item.title}</Text>

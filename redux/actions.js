@@ -7,6 +7,9 @@ export const DROP_TOKEN = "DROP_TOKEN";
 export const ADD_EXPENDITURE = "ADD_EXPENDITURE";
 export const REMOVE_EXPENDITURE = "REMOVE_EXPENDITURE";
 export const RESET_EXPENDITURES = "RESET_EXPENDITURES";
+export const ADD_REVENUE = "ADD_REVENUE";
+export const REMOVE_REVENUE = "REMOVE_REVENUE";
+export const RESET_REVENUES = "RESET_REVENUES";
 
 export const login = (username, password) => async (dispatch) => {
 	try {
@@ -43,5 +46,25 @@ export const removeExpenditure = (expenditureId) => (dispatch) => {
 export const resetExpenditures = () => (dispatch) => {
 	dispatch({
 		type: RESET_EXPENDITURES,
+	});
+};
+
+export const addRevenue = (newRevenue) => (dispatch) => {
+	dispatch({
+		type: ADD_REVENUE,
+		payload: newRevenue,
+	});
+};
+
+export const removeRevenue = (revenueId) => (dispatch) => {
+	dispatch({
+		type: REMOVE_REVENUE,
+		payload: revenueId,
+	});
+};
+
+export const resetRevenues = () => (dispatch) => {
+	dispatch({
+		type: RESET_REVENUES,
 	});
 };

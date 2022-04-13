@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 		color: "#000",
 	},
 	itemRemove: {
-		backgroundColor: "#f77",
+		backgroundColor: "#fa5",
 		alignItems: "center",
 		justifyContent: "center",
 		height: 24,
@@ -54,12 +54,18 @@ const styles = StyleSheet.create({
 		padding: 6,
 		margin: 4,
 		borderWidth: 1,
-		borderColor: "#eff",
 		borderRadius: 5,
 		backgroundColor: "#46f",
 	},
 	pressableText: {
 		color: "#eff",
+	},
+	cancelPressable: {
+		padding: 6,
+		margin: 4,
+		borderWidth: 1,
+		borderRadius: 5,
+		backgroundColor: "#fa5",
 	},
 	modalInput: {
 		width: 240,
@@ -142,7 +148,7 @@ class ExpenditureScreen extends React.Component {
 					<Pressable
 						style={styles.pressable}
 						onPress={() => {
-							this._showModal();
+							this._hideModal();
 							this._resetExpenditures();
 						}}>
 						<Text style={styles.pressableText}>Reset Expenditures</Text>
@@ -174,6 +180,13 @@ class ExpenditureScreen extends React.Component {
 								this._hideModal();
 							}}>
 							<Text style={styles.pressableText}>Add</Text>
+						</Pressable>
+						<Pressable
+							style={styles.cancelPressable}
+							onPress={() => {
+								this._hideModal();
+							}}>
+							<Text style={styles.pressableText}>Cancel</Text>
 						</Pressable>
 					</>
 				) : (

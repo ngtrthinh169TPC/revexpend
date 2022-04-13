@@ -75,13 +75,21 @@ class ExpenditureScreen extends React.Component {
 		showModal: false,
 		newExpenditure: {
 			title: "",
-			spent: "0",
+			spent: "",
 		},
 	};
 
 	_addExpenditure = (expenditure) => {
-		expenditure.spent = +expenditure.spent;
-		this.props.addExpenditure(expenditure);
+		if (
+			expenditure.title.length > 0 &&
+			expenditure.spent.length > 0 &&
+			+expenditure.spent > 0
+		) {
+			expenditure.spent = +expenditure.spent;
+			this.props.addExpenditure(expenditure);
+		} else {
+			console.log("invalid form");
+		}
 	};
 
 	_removeExpenditure = (expenditureId) => {
@@ -106,22 +114,35 @@ class ExpenditureScreen extends React.Component {
 		});
 	};
 
+	_showModal = () => {
+		this.setState({
+			...this.state,
+			showModal: true,
+		});
+	};
+
+	_hideModal = () => {
+		this.setState({
+			showModal: false,
+			newExpenditure: {
+				title: "",
+				spent: "",
+			},
+		});
+	};
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<Text>Total spent: {this.props.expenditures.totalSpent}</Text>
 				<View style={styles.buttonContainer}>
-					<Pressable
-						style={styles.pressable}
-						onPress={() => {
-							this.setState({ showModal: true });
-						}}>
+					<Pressable style={styles.pressable} onPress={this._showModal}>
 						<Text style={styles.pressableText}>Add Expenditure</Text>
 					</Pressable>
 					<Pressable
 						style={styles.pressable}
 						onPress={() => {
-							this.setState({ showModal: false });
+							this._showModal();
 							this._resetExpenditures();
 						}}>
 						<Text style={styles.pressableText}>Reset Expenditures</Text>
@@ -150,7 +171,7 @@ class ExpenditureScreen extends React.Component {
 							style={styles.pressable}
 							onPress={() => {
 								this._addExpenditure(this.state.newExpenditure);
-								this.setState({ showModal: false });
+								this._hideModal();
 							}}>
 							<Text style={styles.pressableText}>Add</Text>
 						</Pressable>

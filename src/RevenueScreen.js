@@ -1,55 +1,12 @@
 /** @format */
 
 import React from "react";
-import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { Text, View, ScrollView, Pressable } from "react-native";
 import { connect } from "react-redux";
 
 import { addRevenue, removeRevenue, resetRevenues } from "../redux/actions";
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	buttonContainer: {
-		flexDirection: "row",
-	},
-	item: {
-		backgroundColor: "#fdfdff",
-		padding: 10,
-		margin: 10,
-		width: 200,
-		borderColor: "#46f",
-		borderWidth: 2,
-		borderRadius: 10,
-	},
-	itemText: {
-		color: "#000",
-	},
-	itemRemove: {
-		backgroundColor: "#f77",
-		alignItems: "center",
-		justifyContent: "center",
-		height: 24,
-		width: 72,
-		borderRadius: 5,
-	},
-	itemRemoveText: {
-		color: "#fff",
-	},
-	pressable: {
-		padding: 6,
-		margin: 4,
-		borderWidth: 1,
-		borderRadius: 5,
-		backgroundColor: "#46f",
-	},
-	pressableText: {
-		color: "#eff",
-	},
-});
+import styles from "./screen.styles";
 
 class RevenueScreen extends React.Component {
 	_addRevenue = (revenue) => {
@@ -67,7 +24,9 @@ class RevenueScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>Total gain: {this.props.revenues.totalGain}</Text>
+				<Text style={[styles.totalText, styles.text]}>
+					Total gain: {this.props.revenues.totalGain}
+				</Text>
 				<View style={styles.buttonContainer}>
 					<Pressable
 						style={styles.pressable}

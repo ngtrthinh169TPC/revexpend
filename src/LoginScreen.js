@@ -1,40 +1,26 @@
 /** @format */
 
 import React from "react";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, Pressable } from "react-native";
 import { connect } from "react-redux";
 
 import { login } from "../redux/actions";
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	pressable: {
-		padding: 6,
-		margin: 4,
-		borderWidth: 1,
-		borderRadius: 5,
-		backgroundColor: "#46f",
-	},
-	pressableText: {
-		color: "#eff",
-	},
-});
+import styles from "./screen.styles";
 
 class LoginScreen extends React.Component {
 	_login = (username, password) => {
 		this.props.login(username, password);
 	};
+
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>Login Screen</Text>
+				<Text style={styles.text}>Login Screen</Text>
 				{this.props.token.token ? (
-					<Text>Current token: {this.props.token.token}</Text>
+					<Text style={styles.text}>
+						Current token: {this.props.token.token}
+					</Text>
 				) : (
 					<Pressable
 						style={styles.pressable}

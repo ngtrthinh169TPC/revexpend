@@ -6,24 +6,25 @@ import { connect } from "react-redux";
 
 import { dropToken } from "../redux/actions";
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	pressable: {
-		padding: 6,
-		margin: 4,
-		borderWidth: 1,
-		borderRadius: 5,
-		backgroundColor: "#46f",
-	},
-	pressableText: {
-		color: "#eff",
-	},
-});
+import styles from "./screen.styles";
+
+// const styles = StyleSheet.create({
+// 	container: {
+// 		flex: 1,
+// 		backgroundColor: "#fff",
+// 		alignItems: "center",
+// 		justifyContent: "center",
+// 	},
+// 	pressable: {
+// 		padding: 6,
+// 		margin: 4,
+// 		borderRadius: 5,
+// 		backgroundColor: "#46f",
+// 	},
+// 	pressableText: {
+// 		color: "#eff",
+// 	},
+// });
 
 class ShowTokenScreen extends React.Component {
 	_logOut = () => {
@@ -35,13 +36,13 @@ class ShowTokenScreen extends React.Component {
 			<View style={styles.container}>
 				{this.props.token.token ? (
 					<>
-						<Text>token: {this.props.token.token}</Text>
+						<Text style={styles.text}>token: {this.props.token.token}</Text>
 						<Pressable style={styles.pressable} onPress={this._logOut}>
 							<Text style={styles.pressableText}>drop Token</Text>
 						</Pressable>
 					</>
 				) : (
-					<Text>Token not found D:</Text>
+					<Text style={styles.text}>Token not found D:</Text>
 				)}
 				<Pressable
 					style={styles.pressable}

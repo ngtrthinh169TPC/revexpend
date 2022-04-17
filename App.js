@@ -16,6 +16,7 @@ import RevenueScreen from "./src/RevenueScreen";
 import ExpenditureScreen from "./src/ExpenditureScreen";
 import LoginScreen from "./src/LoginScreen";
 import ShowTokenScreen from "./src/ShowToken";
+import BalanceScreen from "./src/BalanceScreen";
 
 const Authentication = () => {
 	return (
@@ -35,7 +36,7 @@ export default function App() {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<NavigationContainer>
-					<Tab.Navigator screenOptions={{ tabBarActiveTintColor: "#46f" }}>
+					<Tab.Navigator screenOptions={{ tabBarActiveTintColor: "#000" }}>
 						<Tab.Screen
 							name='Authentication'
 							component={Authentication}
@@ -43,7 +44,18 @@ export default function App() {
 								tabBarIcon: ({ color, size }) => (
 									<Icon name='home' color={color} size={size} />
 								),
-								headerStyle: { backgroundColor: "#cdd" },
+								headerStyle: { backgroundColor: "#bdd" },
+							}}
+						/>
+						<Tab.Screen
+							name='BalanceScreen'
+							component={BalanceScreen}
+							options={{
+								tabBarLabel: "Balance",
+								tabBarIcon: ({ color, size }) => (
+									<Icon name='balance-scale' color={color} size={size} />
+								),
+								headerStyle: { backgroundColor: "#fe7" },
 							}}
 						/>
 						<Tab.Screen

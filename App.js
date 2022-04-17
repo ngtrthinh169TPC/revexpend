@@ -55,7 +55,7 @@ export default function App() {
 								tabBarIcon: ({ color, size }) => (
 									<Icon name='balance-scale' color={color} size={size} />
 								),
-								headerStyle: { backgroundColor: "#fe7" },
+								headerStyle: { backgroundColor: "#fe9" },
 							}}
 						/>
 						<Tab.Screen

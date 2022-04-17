@@ -14,7 +14,6 @@ export default StyleSheet.create({
 	},
 	item: {
 		backgroundColor: "#eee",
-		alignSelf: "stretch",
 		padding: 12,
 		margin: 8,
 		width: 200,
@@ -25,7 +24,7 @@ export default StyleSheet.create({
 		color: "#025",
 	},
 	itemRemove: {
-		backgroundColor: "#c60",
+		backgroundColor: "#c96",
 		alignItems: "center",
 		justifyContent: "center",
 		height: 24,
@@ -48,7 +47,7 @@ export default StyleSheet.create({
 		padding: 6,
 		margin: 4,
 		borderRadius: 5,
-		backgroundColor: "#c60",
+		backgroundColor: "#531",
 	},
 	modalInput: {
 		width: 240,
@@ -68,6 +67,6 @@ export default StyleSheet.create({
 	},
 	balance: {
 		fontWeight: "bold",
-		color: "#fe7",
+		color: "#fe9",
 	},
 });

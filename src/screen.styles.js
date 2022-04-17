@@ -69,4 +69,7 @@ export default StyleSheet.create({
 		fontWeight: "bold",
 		color: "#fe9",
 	},
+	emptyListText: {
+		fontSize: 20,
+	},
 });

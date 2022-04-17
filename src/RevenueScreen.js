@@ -1,22 +1,34 @@
 /** @format */
 
 import React from "react";
-import { Text, View, ScrollView, Pressable } from "react-native";
+import { Text, View, ScrollView, Pressable, FlatList } from "react-native";
 import { connect } from "react-redux";
 
 import { addRevenue, removeRevenue, resetRevenues } from "../redux/actions";
 
 import styles from "./screen.styles";
 
-const RevenueListItem = (item, onRemove) => {
+const RevenueListItem = (props) => {
 	return (
-		<View style={styles.item} key={item.id}>
-			<Text style={styles.itemText}>{item.id}</Text>
-			<Text style={styles.itemText}>Title: {item.title}</Text>
-			<Text style={styles.itemText}>Gain: {item.gain}</Text>
-			<Pressable style={styles.itemRemove} onPress={() => onRemove(item.id)}>
+		<View style={styles.item}>
+			<Text style={styles.itemText}>{props.item.id}</Text>
+			<Text style={styles.itemText}>Title: {props.item.title}</Text>
+			<Text style={styles.itemText}>Gain: {props.item.gain}</Text>
+			<Pressable
+				style={styles.itemRemove}
+				onPress={() => props.onRemove(props.item.id)}>
 				<Text style={styles.itemRemoveText}>remove</Text>
 			</Pressable>
+		</View>
+	);
+};
+
+const RevenueListEmpty = () => {
+	return (
+		<View style={styles.container}>
+			<Text style={[styles.text, styles.emptyListText]}>
+				Go and make money. Your wallet seems empty D:
+			</Text>
 		</View>
 	);
 };
@@ -67,11 +79,19 @@ class RevenueScreen extends React.Component {
 						<Text style={styles.pressableText}>Reset Revenues</Text>
 					</Pressable>
 				</View>
-				<ScrollView>
-					{this.props.revenues.revenueList.map((item) =>
-						RevenueListItem(item, this._removeRevenue)
-					)}
-				</ScrollView>
+				<FlatList
+					contentContainerStyle={{ flexGrow: 1 }}
+					data={this.props.revenues.revenueList}
+					renderItem={(item) => {
+						return (
+							<RevenueListItem
+								item={item.item}
+								onRemove={this._removeRevenue}
+							/>
+						);
+					}}
+					ListEmptyComponent={RevenueListEmpty}
+					keyExtractor={(item) => item.id}></FlatList>
 			</View>
 		);
 	}

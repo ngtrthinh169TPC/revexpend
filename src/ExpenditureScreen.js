@@ -1,22 +1,34 @@
 /** @format */
 
 import React from "react";
-import { Text, View, ScrollView, Pressable } from "react-native";
+import { Text, View, Pressable, FlatList } from "react-native";
 import { connect } from "react-redux";
 
 import { removeExpenditure, resetExpenditures } from "../redux/actions";
 
 import styles from "./screen.styles";
 
-const ExpenditureListItem = (item, onRemove) => {
+const ExpenditureListItem = (props) => {
 	return (
-		<View style={styles.item} key={item.id}>
-			<Text style={styles.itemText}>{item.id}</Text>
-			<Text style={styles.itemText}>Title: {item.title}</Text>
-			<Text style={styles.itemText}>Spent: {item.spent}</Text>
-			<Pressable style={styles.itemRemove} onPress={() => onRemove(item.id)}>
+		<View style={styles.item}>
+			<Text style={styles.itemText}>{props.item.id}</Text>
+			<Text style={styles.itemText}>Title: {props.item.title}</Text>
+			<Text style={styles.itemText}>Spent: {props.item.spent}</Text>
+			<Pressable
+				style={styles.itemRemove}
+				onPress={() => props.onRemove(props.item.id)}>
 				<Text style={styles.itemRemoveText}>remove</Text>
 			</Pressable>
+		</View>
+	);
+};
+
+const ExpenditureListEmpty = () => {
+	return (
+		<View style={styles.container}>
+			<Text style={[styles.text, styles.emptyListText]}>
+				Empty record. You've probably hit the reset button :|
+			</Text>
 		</View>
 	);
 };
@@ -56,11 +68,19 @@ class ExpenditureScreen extends React.Component {
 						<Text style={styles.pressableText}>Reset Expenditures</Text>
 					</Pressable>
 				</View>
-				<ScrollView>
-					{this.props.expenditures.expenditureList.map((item) =>
-						ExpenditureListItem(item, this._removeExpenditure)
-					)}
-				</ScrollView>
+				<FlatList
+					contentContainerStyle={{ flexGrow: 1 }}
+					data={this.props.expenditures.expenditureList}
+					renderItem={(item) => {
+						return (
+							<ExpenditureListItem
+								item={item.item}
+								onRemove={this._removeExpenditure}
+							/>
+						);
+					}}
+					keyExtractor={(item) => item.id}
+					ListEmptyComponent={ExpenditureListEmpty}></FlatList>
 			</View>
 		);
 	}

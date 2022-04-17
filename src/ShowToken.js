@@ -1,30 +1,12 @@
 /** @format */
 
 import React from "react";
-import { View, Text, Button, StyleSheet, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { connect } from "react-redux";
 
 import { dropToken } from "../redux/actions";
 
 import styles from "./screen.styles";
-
-// const styles = StyleSheet.create({
-// 	container: {
-// 		flex: 1,
-// 		backgroundColor: "#fff",
-// 		alignItems: "center",
-// 		justifyContent: "center",
-// 	},
-// 	pressable: {
-// 		padding: 6,
-// 		margin: 4,
-// 		borderRadius: 5,
-// 		backgroundColor: "#46f",
-// 	},
-// 	pressableText: {
-// 		color: "#eff",
-// 	},
-// });
 
 class ShowTokenScreen extends React.Component {
 	_logOut = () => {

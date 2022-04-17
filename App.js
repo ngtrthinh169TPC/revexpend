@@ -17,12 +17,35 @@ import ExpenditureScreen from "./src/ExpenditureScreen";
 import LoginScreen from "./src/LoginScreen";
 import ShowTokenScreen from "./src/ShowToken";
 import BalanceScreen from "./src/BalanceScreen";
+import AddRevenueScreen from "./src/AddRevenueScreen";
+import AddExpenditureScreen from "./src/AddExpenditureScreen";
 
 const Authentication = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name='ShowToken' component={ShowTokenScreen} />
 			<Stack.Screen name='LoginScreen' component={LoginScreen} />
+		</Stack.Navigator>
+	);
+};
+
+const Revenues = () => {
+	return (
+		<Stack.Navigator screenOptions={{ headerShown: false }}>
+			<Stack.Screen name='RevenueScreen' component={RevenueScreen} />
+			<Stack.Screen name='AddRevenueScreen' component={AddRevenueScreen} />
+		</Stack.Navigator>
+	);
+};
+
+const Expenditures = () => {
+	return (
+		<Stack.Navigator screenOptions={{ headerShown: false }}>
+			<Stack.Screen name='ExpenditureScreen' component={ExpenditureScreen} />
+			<Stack.Screen
+				name='AddExpenditureScreen'
+				component={AddExpenditureScreen}
+			/>
 		</Stack.Navigator>
 	);
 };
@@ -59,8 +82,8 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='RevenueScreen'
-							component={RevenueScreen}
+							name='RevenueScreens'
+							component={Revenues}
 							options={{
 								tabBarLabel: "Revenue",
 								tabBarIcon: ({ color, size }) => (
@@ -70,8 +93,8 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='ExpenditureScreen'
-							component={ExpenditureScreen}
+							name='ExpenditureScreens'
+							component={Expenditures}
 							options={{
 								tabBarLabel: "Expenditure",
 								tabBarIcon: ({ color, size }) => (

@@ -27,14 +27,14 @@ class LoginScreen extends React.Component {
 		return (
 			<View style={styles.container}>
 				<Text style={[styles.text, styles.totalText]}>
-					Total Expenditure: {this.props.expenditures.totalSpent}
+					Total Revenue: {this.props.revenues.totalGain}
 				</Text>
 				<Text style={[styles.text, styles.totalText]}>
-					Total Revenue: {this.props.revenues.totalGain}
+					Total Expenditure: {this.props.expenditures.totalSpent}
 				</Text>
 				<Text style={[styles.text, styles.totalText, styles.balance]}>
 					Balance:{" "}
-					{this.props.expenditures.totalSpent - this.props.revenues.totalGain}
+					{this.props.revenues.totalGain - this.props.expenditures.totalSpent}
 				</Text>
 			</View>
 		);

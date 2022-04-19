@@ -18,12 +18,14 @@ As the final project and as the requirements of the project, this mini project h
 - 3 stack navigators (inside the tabs).
 - larger in scope than the Todo app.
 
+- small side task: I made my own interfaces, as the teacher asked.
+
 # Structure
 
-First tab is the authentication - network call thing. It implements a page that shows token, and a login page. Only thing it can do is log in as username="username" and password="password" using the simple api made by Teacher Jordan Hayashi.
+- First tab is the authentication - network call thing. It implements a page that shows token, and a login page. Only thing it can do is log in as username="username" and password="password" using the simple api made by Teacher Jordan Hayashi.
 
-Third tab and fourth tab are revenues and expenditures. It implements much like Todo app, but improve and change a little bit to suit the needs. It supports a modal to add new revenues and new expenditures.
+- Third tab and fourth tab are revenues and expenditures. It implements much like Todo app, but improve and change a little bit to suit the needs. It supports a modal to add new revenues and new expenditures.
 
-Second tab is just a screen to show your "balance" by taking your total revenue minus your total expenditure. It's there to make use of redux.
+- Second tab is just a screen to show your "balance" by taking your total revenue minus your total expenditure. It's there to make use of redux.
 
-Almost every data of this app is stored in redux-persist.
+- Almost every data of this app is stored in redux-persist.

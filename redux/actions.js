@@ -2,7 +2,8 @@
 
 import axios from "axios";
 
-export const LOG_IN = "LOG_IN";
+export const LOG_IN_SUCCEEDED = "LOG_IN_SUCCEEDED";
+export const LOG_IN_FAILED = "LOG_IN_FAILED";
 export const DROP_TOKEN = "DROP_TOKEN";
 export const ADD_EXPENDITURE = "ADD_EXPENDITURE";
 export const REMOVE_EXPENDITURE = "REMOVE_EXPENDITURE";
@@ -11,15 +12,16 @@ export const ADD_REVENUE = "ADD_REVENUE";
 export const REMOVE_REVENUE = "REMOVE_REVENUE";
 export const RESET_REVENUES = "RESET_REVENUES";
 
-export const login = (username, password) => async (dispatch) => {
+export const sendLogin = (username, password) => async (dispatch) => {
 	try {
 		const response = await axios.post("http://192.168.0.105:8000", {
 			username: username,
 			password: password,
 		});
-		dispatch({ type: LOG_IN, payload: response.data.token });
+		console.log(response);
+		dispatch({ type: LOG_IN_SUCCEEDED, payload: response.data.token });
 	} catch (err) {
-		console.log(err);
+		dispatch({ type: LOG_IN_FAILED, payload: err.response.data });
 	}
 };
 

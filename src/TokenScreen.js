@@ -8,7 +8,7 @@ import { dropToken } from "../redux/actions";
 
 import styles from "./screen.styles";
 
-class ShowTokenScreen extends React.Component {
+class TokenScreen extends React.Component {
 	_logOut = () => {
 		this.props.dropToken();
 	};
@@ -16,6 +16,12 @@ class ShowTokenScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<Pressable
+					style={[styles.pressable, styles.topRightPressable]}
+					onPress={() => this.props.navigation.navigate("LoginScreen")}>
+					<Text style={styles.pressableText}>to Login Screen</Text>
+				</Pressable>
+				<Text style={[styles.text, styles.headingText]}>Token Screen</Text>
 				{this.props.token.token ? (
 					<>
 						<Text style={styles.text}>token: {this.props.token.token}</Text>
@@ -24,13 +30,10 @@ class ShowTokenScreen extends React.Component {
 						</Pressable>
 					</>
 				) : (
-					<Text style={styles.text}>Token not found D:</Text>
+					<Text style={[styles.text.color, styles.badText]}>
+						Token not found D:
+					</Text>
 				)}
-				<Pressable
-					style={styles.pressable}
-					onPress={() => this.props.navigation.navigate("LoginScreen")}>
-					<Text style={styles.pressableText}>go to Login Screen</Text>
-				</Pressable>
 			</View>
 		);
 	}
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => ({
 	token: state.token,
 });
 
-export default connect(mapStateToProps, { dropToken })(ShowTokenScreen);
+export default connect(mapStateToProps, { dropToken })(TokenScreen);

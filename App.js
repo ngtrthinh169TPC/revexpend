@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import RevenueScreen from "./src/RevenueScreen";
 import ExpenditureScreen from "./src/ExpenditureScreen";
 import LoginScreen from "./src/LoginScreen";
-import ShowTokenScreen from "./src/ShowToken";
+import TokenScreen from "./src/TokenScreen";
 import BalanceScreen from "./src/BalanceScreen";
 import AddRevenueScreen from "./src/AddRevenueScreen";
 import AddExpenditureScreen from "./src/AddExpenditureScreen";
@@ -23,7 +23,7 @@ import AddExpenditureScreen from "./src/AddExpenditureScreen";
 const Authentication = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
-			<Stack.Screen name='ShowToken' component={ShowTokenScreen} />
+			<Stack.Screen name='TokenScreen' component={TokenScreen} />
 			<Stack.Screen name='LoginScreen' component={LoginScreen} />
 		</Stack.Navigator>
 	);

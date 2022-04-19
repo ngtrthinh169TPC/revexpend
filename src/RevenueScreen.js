@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Text, View, ScrollView, Pressable, FlatList } from "react-native";
+import { Text, View, Pressable, FlatList } from "react-native";
 import { connect } from "react-redux";
 
 import { addRevenue, removeRevenue, resetRevenues } from "../redux/actions";
@@ -27,7 +27,7 @@ const RevenueListEmpty = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={[styles.text, styles.emptyListText]}>
-				Go and make money. Your wallet seems empty D:
+				Your wallet seems empty D:
 			</Text>
 		</View>
 	);
@@ -62,7 +62,7 @@ class RevenueScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={[styles.totalText, styles.text]}>
+				<Text style={[styles.headingText, styles.text]}>
 					Total gain: {this.props.revenues.totalGain}
 				</Text>
 				<View style={styles.buttonContainer}>

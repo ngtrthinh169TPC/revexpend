@@ -27,7 +27,7 @@ const ExpenditureListEmpty = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={[styles.text, styles.emptyListText]}>
-				Empty record. You've probably hit the reset button :|
+				Did you just hit the reset button? :|
 			</Text>
 		</View>
 	);
@@ -49,7 +49,7 @@ class ExpenditureScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={[styles.totalText, styles.text]}>
+				<Text style={[styles.headingText, styles.text]}>
 					Total spent: {this.props.expenditures.totalSpent}
 				</Text>
 				<View style={styles.buttonContainer}>

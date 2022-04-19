@@ -58,7 +58,7 @@ export default StyleSheet.create({
 		borderWidth: 1,
 		padding: 5,
 	},
-	totalText: {
+	headingText: {
 		padding: 8,
 		fontSize: 20,
 	},
@@ -71,5 +71,13 @@ export default StyleSheet.create({
 	},
 	emptyListText: {
 		fontSize: 20,
+	},
+	badText: {
+		color: "#f66",
+	},
+	topRightPressable: {
+		position: "absolute",
+		top: 4,
+		right: 0,
 	},
 });

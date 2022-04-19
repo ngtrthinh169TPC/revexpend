@@ -3,7 +3,8 @@
 import { combineReducers } from "redux";
 
 import {
-	LOG_IN,
+	LOG_IN_SUCCEEDED,
+	LOG_IN_FAILED,
 	DROP_TOKEN,
 	ADD_EXPENDITURE,
 	REMOVE_EXPENDITURE,
@@ -15,8 +16,10 @@ import {
 
 const tokenReducer = (state = {}, action) => {
 	switch (action.type) {
-		case LOG_IN:
-			return { ...state, token: action.payload };
+		case LOG_IN_SUCCEEDED:
+			return { ...state, token: action.payload, error: null };
+		case LOG_IN_FAILED:
+			return { ...state, error: action.payload };
 		case DROP_TOKEN: {
 			return { ...state, token: null };
 		}

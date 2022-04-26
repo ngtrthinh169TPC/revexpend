@@ -29,3 +29,13 @@ As the final project and as the requirements of the project, this mini project h
 - Second tab is just a screen to show your "balance" by taking your total revenue minus your total expenditure. It's there to make use of redux.
 
 - Almost every data of this app is stored in redux-persist.
+
+# Development clone and run
+
+- Cloning
+  git clone https://github.com/ngtrthinh169TPC/revexpend
+- Install packages
+  npm install / yarn
+- Run expo server
+  expo start
+- Use your mobile to scan QR code and see the app running

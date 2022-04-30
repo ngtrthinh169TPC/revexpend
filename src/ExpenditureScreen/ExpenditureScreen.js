@@ -4,9 +4,15 @@ import React from "react";
 import { Text, View, Pressable, FlatList } from "react-native";
 import { connect } from "react-redux";
 
-import { removeExpenditure, resetExpenditures } from "../redux/actions";
+import AddExpenditureModal from "./AddExpenditureModal";
 
-import styles from "./screen.styles";
+import {
+	addExpenditure,
+	removeExpenditure,
+	resetExpenditures,
+} from "../../redux/actions";
+
+import styles from "../screen.styles";
 
 const ExpenditureListItem = (props) => {
 	return (
@@ -38,12 +44,24 @@ class ExpenditureScreen extends React.Component {
 		showModal: false,
 	};
 
+	_addExpenditure = (expenditure) => {
+		this.props.addExpenditure(expenditure);
+	};
+
 	_removeExpenditure = (expenditureId) => {
 		this.props.removeExpenditure(expenditureId);
 	};
 
 	_resetExpenditures = () => {
 		this.props.resetExpenditures();
+	};
+
+	_openModal = () => {
+		this.setState({ ...this.state, showModal: true });
+	};
+
+	_closeModal = () => {
+		this.setState({ ...this.state, showModal: false });
 	};
 
 	render() {
@@ -55,8 +73,11 @@ class ExpenditureScreen extends React.Component {
 				<View style={styles.buttonContainer}>
 					<Pressable
 						style={styles.pressable}
-						onPress={() =>
-							this.props.navigation.navigate("AddExpenditureScreen")
+						onPress={
+							() => {
+								this._openModal();
+							}
+							// this.props.navigation.navigate("AddExpenditureScreen")
 						}>
 						<Text style={styles.pressableText}>Add Expenditure</Text>
 					</Pressable>
@@ -81,6 +102,12 @@ class ExpenditureScreen extends React.Component {
 					}}
 					keyExtractor={(item) => item.id}
 					ListEmptyComponent={ExpenditureListEmpty}></FlatList>
+				{this.state.showModal && (
+					<AddExpenditureModal
+						addExpenditure={this._addExpenditure}
+						closeModal={this._closeModal}
+					/>
+				)}
 			</View>
 		);
 	}
@@ -92,6 +119,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+	addExpenditure,
 	removeExpenditure,
 	resetExpenditures,
 })(ExpenditureScreen);

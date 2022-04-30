@@ -34,6 +34,10 @@ const expenditureReducer = (
 ) => {
 	switch (action.type) {
 		case ADD_EXPENDITURE: {
+			if (typeof action.payload.spent !== "number") {
+				console.log("'spent' has a wrong type. Expected number.");
+				return state;
+			}
 			let newTotalSpent = state.totalSpent + action.payload.spent;
 			action.payload.id = state.idSeed;
 			let newExpenditureList = [...state.expenditureList, action.payload];
@@ -69,6 +73,10 @@ const revenueReducer = (
 ) => {
 	switch (action.type) {
 		case ADD_REVENUE: {
+			if (typeof action.payload.gain !== "number") {
+				console.log("'gain' has a wrong type. Expected number.");
+				return state;
+			}
 			let newTotalGain = state.totalGain + action.payload.gain;
 			action.payload.id = state.idSeed;
 			let newRevenueList = [...state.revenueList, action.payload];

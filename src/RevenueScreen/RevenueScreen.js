@@ -4,9 +4,11 @@ import React from "react";
 import { Text, View, Pressable, FlatList } from "react-native";
 import { connect } from "react-redux";
 
-import { addRevenue, removeRevenue, resetRevenues } from "../redux/actions";
+import AddRevenueModal from "./AddRevenueModal";
 
-import styles from "./screen.styles";
+import { addRevenue, removeRevenue, resetRevenues } from "../../redux/actions";
+
+import styles from "../screen.styles";
 
 const RevenueListItem = (props) => {
 	return (
@@ -39,16 +41,7 @@ class RevenueScreen extends React.Component {
 	};
 
 	_addRevenue = (revenue) => {
-		if (
-			revenue.title.length > 0 &&
-			revenue.gain.length > 0 &&
-			+revenue.gain > 0
-		) {
-			revenue.gain = +revenue.gain;
-			this.props.addRevenue(revenue);
-		} else {
-			console.log("invalid form");
-		}
+		this.props.addRevenue(revenue);
 	};
 
 	_removeRevenue = (revenueId) => {
@@ -57,6 +50,14 @@ class RevenueScreen extends React.Component {
 
 	_resetRevenues = () => {
 		this.props.resetRevenues();
+	};
+
+	_openModal = () => {
+		this.setState({ ...this.state, showModal: true });
+	};
+
+	_closeModal = () => {
+		this.setState({ ...this.state, showModal: false });
 	};
 
 	render() {
@@ -68,7 +69,9 @@ class RevenueScreen extends React.Component {
 				<View style={styles.buttonContainer}>
 					<Pressable
 						style={styles.pressable}
-						onPress={() => this.props.navigation.navigate("AddRevenueScreen")}>
+						onPress={() => {
+							this._openModal();
+						}}>
 						<Text style={styles.pressableText}>Add Revenue</Text>
 					</Pressable>
 					<Pressable
@@ -92,6 +95,12 @@ class RevenueScreen extends React.Component {
 					}}
 					ListEmptyComponent={RevenueListEmpty}
 					keyExtractor={(item) => item.id}></FlatList>
+				{this.state.showModal && (
+					<AddRevenueModal
+						addRevenue={this._addRevenue}
+						closeModal={this._closeModal}
+					/>
+				)}
 			</View>
 		);
 	}

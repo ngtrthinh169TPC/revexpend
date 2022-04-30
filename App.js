@@ -12,40 +12,17 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
-import RevenueScreen from "./src/RevenueScreen";
-import ExpenditureScreen from "./src/ExpenditureScreen";
+import RevenueScreen from "./src/RevenueScreen/RevenueScreen";
+import ExpenditureScreen from "./src/ExpenditureScreen/ExpenditureScreen";
 import LoginScreen from "./src/LoginScreen";
 import TokenScreen from "./src/TokenScreen";
 import BalanceScreen from "./src/BalanceScreen";
-import AddRevenueScreen from "./src/AddRevenueScreen";
-import AddExpenditureScreen from "./src/AddExpenditureScreen";
 
 const Authentication = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name='TokenScreen' component={TokenScreen} />
 			<Stack.Screen name='LoginScreen' component={LoginScreen} />
-		</Stack.Navigator>
-	);
-};
-
-const Revenues = () => {
-	return (
-		<Stack.Navigator screenOptions={{ headerShown: false }}>
-			<Stack.Screen name='RevenueScreen' component={RevenueScreen} />
-			<Stack.Screen name='AddRevenueScreen' component={AddRevenueScreen} />
-		</Stack.Navigator>
-	);
-};
-
-const Expenditures = () => {
-	return (
-		<Stack.Navigator screenOptions={{ headerShown: false }}>
-			<Stack.Screen name='ExpenditureScreen' component={ExpenditureScreen} />
-			<Stack.Screen
-				name='AddExpenditureScreen'
-				component={AddExpenditureScreen}
-			/>
 		</Stack.Navigator>
 	);
 };
@@ -82,8 +59,8 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='RevenueScreens'
-							component={Revenues}
+							name='RevenueScreen'
+							component={RevenueScreen}
 							options={{
 								tabBarLabel: "Revenue",
 								tabBarIcon: ({ color, size }) => (
@@ -93,8 +70,8 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='ExpenditureScreens'
-							component={Expenditures}
+							name='ExpenditureScreen'
+							component={ExpenditureScreen}
 							options={{
 								tabBarLabel: "Expenditure",
 								tabBarIcon: ({ color, size }) => (

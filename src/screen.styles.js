@@ -1,6 +1,6 @@
 /** @format */
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 export default StyleSheet.create({
 	container: {
@@ -51,18 +51,20 @@ export default StyleSheet.create({
 	},
 	modalInput: {
 		width: 240,
-		height: 24,
-		margin: 5,
+		height: 28,
+		marginVertical: 6,
 		color: "#fff",
 		borderColor: "#fff",
 		borderWidth: 1,
-		padding: 5,
+		paddingHorizontal: 8,
+		paddingVertical: 4,
 	},
 	headingText: {
 		padding: 8,
 		fontSize: 20,
 	},
 	text: {
+		textAlign: "left",
 		color: "#fff",
 	},
 	balance: {
@@ -79,5 +81,20 @@ export default StyleSheet.create({
 		position: "absolute",
 		top: 4,
 		right: 0,
+	},
+	modal: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		margin: 0,
+		backgroundColor: "#000b",
+	},
+	modalView: {
+		height: Dimensions.get("window").height * 0.5,
+		width: Dimensions.get("window").width * 0.8,
+		backgroundColor: "#222",
+		alignItems: "center",
+		justifyContent: "center",
+		borderRadius: 16,
 	},
 });

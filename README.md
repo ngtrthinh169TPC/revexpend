@@ -39,3 +39,7 @@ As the final project and as the requirements of the project, this mini project h
 - Run expo server
   expo start
 - Use your mobile to scan QR code and see the app running
+
+# After note
+
+- This project is abandoned, as I tried to migrate it to ReactNative instead of running with Expo. You can find the migrated one [here](https://github.com/ngtrthinh169TPC/RevexpendNative)
